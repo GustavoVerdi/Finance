@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
+
+@media only screen and (min-width: 960px) {
+  /* styles for browsers larger than 960px; */
+}
+@media only screen and (min-width: 1440px) {
+  /* styles for browsers larger than 1440px; */
+}
+@media only screen and (min-width: 2000px) {
+  /* for sumo sized (mac) screens */
+}
+@media only screen and (max-device-width: 480px) {
+ /* styles for mobile browsers smaller than 480px; (iPhone) */
+}
+@media only screen and (device-width: 768px) {
+ /* default iPad screens */
+}
+/* different techniques for iPad screening */
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+/* For portrait layouts only */
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+/* For landscape layouts only */
+}
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Arimo', sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-info {
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 20px;
+}
+
+.transactions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.myaccount {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    color: #050505;
+    background-color: rgb(224, 215, 215);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.investments,
+.income-expenses {
+    width: 48%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.investments h2,
+.income-expenses h2 {
+    margin-bottom: 10px;
+}
