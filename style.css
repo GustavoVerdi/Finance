@@ -71,7 +71,7 @@ body {
 
 .transactions {
     width: 100%;
-    display: flex;
+    display:initial;
     justify-content: space-between;
 }
 
