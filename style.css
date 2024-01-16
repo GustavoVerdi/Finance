@@ -77,18 +77,18 @@ body {
 
 .myaccount {
     font-size: 18PX;
-    width: 100%;
+    width: auto;
     max-width: 450px;
-    padding: 20px;
+    padding: 10px;
     color: #050505;
     background-color: rgb(224, 215, 215);
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .investments,
 .income-expenses {
-    width: 48%;
+    width: auto ;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 10px;
