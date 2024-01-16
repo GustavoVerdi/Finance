@@ -13,6 +13,9 @@
  /* styles for mobile browsers smaller than 480px; (iPhone) */
 }
 @media only screen and (device-width: 768px) {
+  .investments {
+        flex-direction: column; /* Altera a direção para coluna em telas menores */
+    }
  /* default iPad screens */
 }
 /* different techniques for iPad screening */
@@ -71,7 +74,7 @@ body {
 
 .transactions {
     width: 100%;
-    display:contents;
+    display: flex;
     justify-content: space-between;
 }
 
