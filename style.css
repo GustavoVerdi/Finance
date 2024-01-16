@@ -13,7 +13,7 @@
  /* styles for mobile browsers smaller than 480px; (iPhone) */
 }
 @media only screen and (device-width: 768px) {
-  .investments {
+  .investments, .income-expenses {
         flex-direction: column; /* Altera a direção para coluna em telas menores */
     }
  /* default iPad screens */
