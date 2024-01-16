@@ -13,7 +13,7 @@
  /* styles for mobile browsers smaller than 480px; (iPhone) */
 }
 @media only screen and (device-width: 768px) {
-  .investments, .income-expenses {
+  .transactions{
         flex-direction: column; /* Altera a direção para coluna em telas menores */
     }
  /* default iPad screens */
@@ -91,14 +91,14 @@ body {
 
 .investments,
 .income-expenses {
-    width: auto ;
+    width: 100% ;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
-    max-width:350px;
+    max-width: none;
 }
 
 .investments h2,
