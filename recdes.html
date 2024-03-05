@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo&display=swap">
+    <title>Sua Aplicação Financeira</title>
+</head>
+<body>
+    <nav class="cabecalho_menu" style="width:100%;">
+        <ul class="ulcabecalho">
+            <li><a class="cabecalho_menu_item" href="index.html">Início</a></li>
+            <li><a class="cabecalho_menu_item" href="invest.html">Investimentos</a></li>
+            <li><a class="cabecalho_menu_item" href="recdes.html">Receitas/Despesas</a></li>
+            <li><a class="cabecalho_menu_item" href="">Relatório</a></li>
+        </ul>
+    </nav>
+    <br>
+    <section id="home" class="container">
+        <h2>Bem-vindo(a) à sua aplicação financeira!</h2>
+        <p>Aqui você pode gerenciar seus gastos, recebimentos e investimentos de forma simples.</p>
+    </section>
+    <div class="cont-pag">
+        <h2>Receitas/Despesas</h2>
+        <table>
+            <tr>
+                <th>TIPO</th>
+                <th>NOME</th>
+                <th>VALOR</th>
+            </tr>
+            <tr class="tipreceita">
+                <td>Receita</td>
+                <td>Salário</td>
+                <td>R$1.420,00</td>
+                <td>⬆️</td>    
+            </tr>
+            <tr class="tipdespesa">
+                <td>Despesa</td>
+                <td>Café</td>
+                <td>R$100,00</td>
+                <td>⬇️</td>
+            </tr>
+            <tr class="tipreceita">
+                <td>Receita</td>
+                <td>Aluguel</td>
+                <td>R$1.400,00</td>
+                <td>⬆️</td>
+            </tr>
+            <tr class="tipdespesa">
+                <td>Despesa</td>
+                <td>Almoço</td>
+                <td>R$100,00</td>
+                <td>⬇️</td>
+            </tr>
+            <tr class="tipreceita">
+                <td>Receita</td>
+                <td>Vale Alimentação</td>
+                <td>R$750,00</td>
+                <td>⬆️</td>
+            </tr>
+        </table>
+    </div>
+        <a href="#adicionar-gasto" class="button" onclick="toggleForm('gasto')">Adicionar Gasto/Recebimento</a>
+
+        <!-- Formulário para adicionar gastos/recebimentos -->
+        <div id="adicionar-gasto" class="form-container" style="display:none;">
+            <form>
+                <label for="data">Data:</label>
+                <input type="text" id="data" name="data" placeholder="DD/MM/AAAA" required>
+
+                <label for="descricao">Descrição:</label>
+                <input type="text" id="descricao" name="descricao" required>
+
+                <label for="tipo">Tipo:</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="gasto">Gasto</option>
+                    <option value="recebimento">Recebimento</option>
+                </select>
+
+                <label for="valor">Valor:</label>
+                <input type="text" id="valor" name="valor" placeholder="R$ 0,00" required>
+
+                <input type="submit" value="Adicionar">
+            </form>
+        </div>
+    </section>
+
+    <!-- Adicione seções adicionais conforme necessário -->
+
+    <script>
+        function toggleForm(formId) {
+            var form = document.getElementById('adicionar-' + formId);
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+ <footer class="footer">
+    <div id="rowfooter" class="rowfooter"></div>
+    <p>&copy; 2024 - Todos os direitos reservados. <br>
+      Desenvolvido por Gustavo Verdi.</p>
+</footer>
+</body>
+</html>

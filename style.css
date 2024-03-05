@@ -73,9 +73,10 @@ body {
 }
 
 .transactions {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+  display: block;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 0.5rem
 }
 
 .myaccount {
@@ -88,7 +89,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+/*INDEX*/
 .investments,
 .income-expenses {
     width: 100% ;
@@ -106,7 +107,26 @@ body {
     margin-bottom: 10px;
     font-size: 25px;
 }
+/*SUBPAGINAS*/
+.investcontpag,
+.cont-pag {
+    width: 50% ;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-width: none;
+}
 
+.investcontpag h2,
+.cont-pag h2 {
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+/*FIM-SUBPAGINAS*/
 .valorrecdes
 .nomerecdes{
     border-radius: 15px;
@@ -134,4 +154,29 @@ table {
 }
 TH{
     font-size: 20px;
+}
+td{
+  font-size: 15px;
+  align-items: center;
+}
+/*FOOTER RODAPÉ*/
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: relative; /* Alterado para "relative" */
+  bottom: 0;
+  width: 100%;
+}
+footer {
+  margin-bottom: 20px;
+}
+h1 {
+  font-weight: bold;
+}
+h2 {
+  font-weight: bold;
+  color: black;
+
 }

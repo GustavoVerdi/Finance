@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo&display=swap">
+    <title>Sua Aplicação Financeira</title>
+</head>
+<body>
+    <nav class="cabecalho_menu" style="width:100%;">
+        <ul class="ulcabecalho">
+            <li><a class="cabecalho_menu_item" href="index.html">Início</a></li>
+            <li><a class="cabecalho_menu_item" href="invest.html">Investimentos</a></li>
+            <li><a class="cabecalho_menu_item" href="recdes.html">Receitas/Despesas</a></li>
+            <li><a class="cabecalho_menu_item" href="">Relatório</a></li>
+        </ul>
+    </nav>
+    <br>
+    <section id="investimentos" class="container">
+        <h2>Investimentos na Bolsa de Valores</h2>
+        <div class="investcontpag">
+        <table class="tabelainvestimentos">
+            <tr>
+                <th>Data</th>
+                <th>Empresa</th>
+                <th>Quantidade</th>
+                <th>Preço por Ação</th>
+                <th>Valor Total</th>
+            </tr>
+            <tr>
+                <td>01/01/2024</td>
+                <td>Empresa XYZ</td>
+                <td>10</td>
+                <td>R$ 50,00</td>
+                <td>R$ 500,00</td>
+            </tr>
+        </table>
+        </div>
+
+        
+        <a href="#adicionar-investimento" class="button" onclick="toggleForm('investimento')">Adicionar Investimento</a>
+    
+        <!-- Formulário para adicionar investimentos -->
+        <div id="adicionar-investimento" class="form-container" style="display:none;">
+            <form>
+                <label for="data-invest">Data:</label>
+                <input type="text" id="data-invest" name="data-invest" placeholder="DD/MM/AAAA" required>
+    
+                <label for="empresa">Empresa:</label>
+                <input type="text" id="empresa" name="empresa" required>
+    
+                <label for="quantidade">Quantidade:</label>
+                <input type="text" id="quantidade" name="quantidade" required>
+    
+                <label for="preco-acao">Preço por Ação:</label>
+                <input type="text" id="preco-acao" name="preco-acao" placeholder="R$ 0,00" required>
+    
+                <input type="submit" value="Adicionar">
+            </form>
+        </div>
+    </section>
+    
+    <script>
+        function toggleForm(formId) {
+            var form = document.getElementById('adicionar-' + formId);
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+ <footer class="footer">
+    <div id="rowfooter" class="rowfooter"></div>
+    <p>&copy; 2024 - Todos os direitos reservados. <br>
+      Desenvolvido por Gustavo Verdi.</p>
+</footer>
+</body>
+</html>
