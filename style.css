@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Arimo&display=swap');
 
-@media only screen and (min-width: 960px) {
-  /* styles for browsers larger than 960px; */
-}
 @media only screen and (min-width: 1440px) {
   /* styles for browsers larger than 1440px; */
 }
 @media only screen and (min-width: 2000px) {
   /* for sumo sized (mac) screens */
 }
-@media only screen and (max-device-width: 480px) {
- /* styles for mobile browsers smaller than 480px; (iPhone) */
+@media only screen and (min-width: 960px) {
+  .investments,
+  .income-expenses {
+      max-width: 600px; /* Aumentei o tamanho máximo para telas maiores */
+  }
 }
 @media only screen and (device-width: 768px) {
   .transactions{
@@ -73,10 +73,9 @@ body {
 }
 
 .transactions {
-  display: block;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 1fr;
-  gap: 0.5rem
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* Adicionei um espaçamento entre as divs */
 }
 
 .myaccount {
@@ -92,14 +91,13 @@ body {
 /*INDEX*/
 .investments,
 .income-expenses {
-    width: 100% ;
+    flex: 1; /* Ocupa o espaço disponível igualmente */
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 5px;
+    padding: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-    max-width: none;
+    margin-bottom: 10px;
 }
 
 .investments h2,
@@ -127,56 +125,118 @@ body {
 }
 
 /*FIM-SUBPAGINAS*/
-.valorrecdes
-.nomerecdes{
-    border-radius: 15px;
-    background-color: orange !important;
+.valorrecdes .nomerecdes {
+  border-radius: 15px;
+  background-color: orange !important;
+}
 
+/* Estilos para a tabela de investimentos */
+.tabelainvestimentos {
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
-.tabelainvestimentos{
-    font-size: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 20px;
-}
+
 table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.tipreceita{
-    color: rgb(58, 173, 46) !important;
-    font-size: 22px;
+.tipreceita {
+  color: rgb(58, 173, 46) !important;
+  font-size: 22px;
 }
-.tipdespesa{
-    color: red;
-    font-size: 22px;
+
+.tipdespesa {
+  color: red;
+  font-size: 22px;
 }
-TH{
-    font-size: 20px;
+
+TH {
+  font-size: 20px;
 }
-td{
+
+td {
   font-size: 15px;
   align-items: center;
 }
-/*FOOTER RODAPÉ*/
+
+/* Rodapé */
 .footer {
   background-color: #333;
   color: white;
   text-align: center;
   padding: 10px;
-  position: relative; /* Alterado para "relative" */
+  position: relative;
   bottom: 0;
   width: 100%;
 }
-footer {
-  margin-bottom: 20px;
-}
+
+/* Estilos para títulos */
 h1 {
   font-weight: bold;
 }
+
 h2 {
   font-weight: bold;
   color: black;
-
 }
+/*MODAL SUBTELA*/
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  position: relative;
+  margin: 10% auto;
+  width: 80%;
+  max-width: 600px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.modal-header button {
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-content {
+  margin-top: 10px;
+}
+
+.modal-footer {
+  margin-top: 10px;
+  margin: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.modal-footer button {
+  border: none;
+  background: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/*FIM MODAL SUBTELA*/
