@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo&display=swap">
+    <script type="text/javascript" src="script.js"></script>
     <title>Sua Aplicação Financeira</title>
 </head>
 
@@ -231,7 +232,7 @@
             alert("Você clicou no botão de excluir");
         });
         // Seleciona todos os elementos com a classe b1
-        var botoes = document.getElementsByClassName("b2");
+        var botoes = document.getElementsByClassName("b1");
         // Percorre cada elemento
         for (var i = 0; i < botoes.length; i++) {
             // Adiciona um listener de evento de clique
@@ -240,10 +241,13 @@
                 alert("Você clicou no botão " + this.innerHTML);
             });
         }
+        if (document.querySelector('body').offsetHeight > window.innerHeight)
+document.querySelector('footer').classList.add('footer-relative');
     </script>
 
     </script>
     <footer class="footer">
+        
         <div id="rowfooter" class="rowfooter"></div>
         <p>&copy; 2024 - Todos os direitos reservados. <br>
             Desenvolvido por Gustavo Verdi.</p>
