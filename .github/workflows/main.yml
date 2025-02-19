@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write  # Dá permissão ao GitHub Actions para fazer push
+
 jobs:
   lint:
     name: Verificar Código
@@ -41,6 +44,20 @@ jobs:
       - name: Clonar repositório
         uses: actions/checkout@v3
       
+      - name: Configurar Git
+        run: |
+          git config --global user.email "seu-email@example.com"
+          git config --global user.name "SeuNome"
+      
+      - name: Criar branch gh-pages (se não existir)
+        run: |
+          git fetch origin gh-pages || true
+          git checkout gh-pages || git checkout --orphan gh-pages
+          git reset --hard
+          git clean -fd
+          git commit --allow-empty -m "Inicializando GitHub Pages"
+          git push origin gh-pages || true
+
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v2
       
