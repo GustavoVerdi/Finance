@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Independência Financeira</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="cabecalho_menu" style="width:100%;">
+        <ul class="ulcabecalho">
+            <li><a class="cabecalho_menu_item" href="index.html">Início</a></li>
+            <li><a class="cabecalho_menu_item" href="invest.html">Investimentos</a></li>
+            <li><a class="cabecalho_menu_item" href="recdes.html">Receitas/Despesas</a></li>
+            <li><a class="cabecalho_menu_item" href="">Relatório</a></li>
+        </ul>
+    </nav>
+    <br>
+    <div class="container">
+        <div class="account-info">
+            <!-- Seção de informações da conta -->
+            <div class="myaccount">
+                <h3>Seja Bem-Vindo, $nome</h3>
+                <h4>Seu Saldo é de: $carteira</h4>
+                <!-- VALORIZAÇÃO/DESVALORIZAÇÃO -->
+            </div>
+        </div>
+        <table>
+            <tr>
+                <th></th>
+            </tr>
+        </table>
+        <div class="transactions">
+            <!--Investimentos -->
+            <div class="investments">
+                <h2>Investimentos</h2>
+                <table class="tabelainvestimentos">
+                    <thead>
+                        <tr>
+                            <th>ATIVO</th>
+                            <th>NOME</th>
+                            <th>VALOR</th>
+                            <th>V/D</th>
+                        </tr>
+                    </thead>
+                    <!-- FAZER CONEXÃO COM O BANCO PARA TRAZER OS DADOS QUE FORAM INSERIDOS EM INVESTIMENTOS -->
+                    <tr>
+                        <td>BBSA3</td>
+                        <td>BANCO DO BRASIL</td>
+                        <td>R$50,00</td>
+                        <td style="color: rgb(49, 180, 49);">12,42%</td>
+                    </tr>
+                    <tr>
+                        <td>ITSA4</td>
+                        <td>ITAUSA SA</td>
+                        <td>R$11,00</td>
+                        <td style="color: red;">-2,5%</td>
+                    </tr>
+                    <tr>
+                        <td>PETR4</td>
+                        <td>PETROBRAS</td>
+                        <td>R$25,00</td>
+                        <td style="color: rgb(49, 180, 49);">3,6%</td>
+                    </tr>
+                </table>
+            </div>
+    
+            <!-- Seção de Receitas/Despesas da conta -->
+            <div class="income-expenses">
+                <h2>Receitas/Despesas</h2>
+                <table>
+                    <tr>
+                        <th>TIPO</th>
+                        <th>NOME</th>
+                        <th>VALOR</th>
+                    </tr>
+                    <tr class="tipreceita">
+                        <td>Receita</td>
+                        <td>Salário</td>
+                        <td>R$1.420,00</td>
+                        <td>⬆️</td>    
+                    </tr>
+                    <tr class="tipdespesa">
+                        <td>Despesa</td>
+                        <td>Café</td>
+                        <td>R$100,00</td>
+                        <td>⬇️</td>
+                    </tr>
+                    <tr class="tipreceita">
+                        <td>Receita</td>
+                        <td>Aluguel</td>
+                        <td>R$1.400,00</td>
+                        <td>⬆️</td>
+                    </tr>
+                    <tr class="tipdespesa">
+                        <td>Despesa</td>
+                        <td>Almoço</td>
+                        <td>R$100,00</td>
+                        <td>⬇️</td>
+                    </tr>
+                    <tr class="tipreceita">
+                        <td>Receita</td>
+                        <td>Vale Alimentação</td>
+                        <td>R$750,00</td>
+                        <td>⬆️</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <canvas id="myChart" width="auto" height="25px"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+    
+        // Dados iniciais
+        var salario = 3000;
+        var meses = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+        var despesas = [-300, -1599, -199];
+        var receitas = [670, 7599];
+    
+        // Calcular variação do salário ao longo do tempo
+        var variacaoSalario = [salario];
+        for (var i = 0; i < meses.length; i++) {
+            salario = salario + receitas[i] + despesas[i];
+            variacaoSalario.push(salario);
+        }
+    
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: meses,
+                datasets: [{
+                    label: 'Variação do Patrimônio',
+                    data: variacaoSalario,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    fill: false
+                }]
+            },
+            options: {
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+    </script>
+    <br>
+    <footer class="footer">
+        <div id="rowfooter" class="rowfooter"></div>
+        <p>&copy; 2024 - Todos os direitos reservados. <br>
+          Desenvolvido por Gustavo Verdi.</p>
+    </footer>
+</body>
+</html>
