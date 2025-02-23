@@ -10,6 +10,11 @@ on:
   schedule:
     - cron: '0 0 * * 0'
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   lint:
     name: Verificar Código
@@ -34,6 +39,8 @@ jobs:
   security:
     name: Verificação de Segurança
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v3
@@ -43,11 +50,13 @@ jobs:
         run: npm outdated || true
       - name: Rodar auditoria de segurança NPM
         run: npm audit --audit-level=moderate || true
+      - name: Inicializar análise de segurança
+        uses: github/codeql-action/init@v2
+        with:
+          languages: javascript, python
       - name: Rodar análise de segurança no código
         uses: github/codeql-action/analyze@v2
         continue-on-error: true
-        with:
-          languages: javascript, python
 
   integrity:
     name: Verificação de Integridade
@@ -70,6 +79,8 @@ jobs:
     name: Deploy no GitHub Pages
     needs: [lint, security, integrity]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v3
@@ -80,3 +91,4 @@ jobs:
         with:
           branch: gh-pages
           folder: .
+          token: ${{ secrets.GITHUB_TOKEN }}
