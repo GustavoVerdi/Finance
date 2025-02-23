@@ -21,13 +21,9 @@ jobs:
       - name: Rodar Lighthouse no site
         run: |
           lighthouse http://gustavoverdi.github.io/Finance/ --output=json --output-path=./report.json --quiet --chrome-flags="--headless"
-          
-      - name: Fazer upload de relatório no GitHub (via commit)
-        run: |
-          git config --global user.email "github-actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git add ./report.json
-          git commit -m "Adicionar relatório de performance do Lighthouse"
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Armazenar relatório como artefato
+        uses: actions/upload-artifact@v3 # Usando a versão mais recente
+        with:
+          name: lighthouse-report
+          path: ./report.json
