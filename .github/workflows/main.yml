@@ -9,7 +9,7 @@ on:
       - main
 
 permissions:
-  contents: write  # Dá permissão ao GitHub Actions para fazer push
+  contents: write  
 
 jobs:
   lint:
@@ -49,7 +49,7 @@ jobs:
           git config --global user.email "seu-email@example.com"
           git config --global user.name "SeuNome"
       
-      - name: Criar branch gh-pages (se não existir)
+      - name: Criar branch gh-pages 
         run: |
           git fetch origin gh-pages || true
           git checkout gh-pages || git checkout --orphan gh-pages
