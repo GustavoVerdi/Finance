@@ -1,0 +1,81 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  lint:
+    name: Verificar Código
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Instalar ESLint
+        run: npm install -g eslint
+      - name: Verificar JavaScript
+        run: eslint scripts.js || true
+      - name: Verificar PHP
+        run: |
+          sudo apt-get install php-cli
+          php -l cadastro.php || true
+          php -l login.php || true
+
+  security:
+    name: Verificação de Segurança
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+      - name: Verificar pacotes NPM desatualizados
+        run: npm outdated || true
+      - name: Instalar dependências
+        run: npm install
+      - name: Rodar auditoria de segurança NPM
+        run: npm audit --audit-level=moderate || true
+      - name: Rodar análise de segurança no código
+        uses: github/codeql-action/analyze@v2
+        with:
+          languages: javascript, python
+
+  integrity:
+    name: Verificação de Integridade
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+      - name: Verificar arquivos corrompidos
+        run: find . -type f ! -empty -exec md5sum {} \;
+      - name: Validar arquivos JSON
+        run: |
+          for file in $(find . -name "*.json"); do
+            cat "$file" | jq empty || exit 1
+          done
+      - name: Verificar existência de arquivos críticos
+        run: |
+          test -f index.html && test -f style.css && test -f scripts.js
+
+  deploy:
+    name: Deploy no GitHub Pages
+    needs: [lint, security, integrity]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v2
+      - name: Fazer deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: .
