@@ -1,68 +1,36 @@
-name: CI/CD Pipeline
+name: Formatação de Código
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
 
-permissions:
-  contents: write  
-
 jobs:
-  lint:
-    name: Verificar Código
+  format:
+    name: Aplicar Formatação
     runs-on: ubuntu-latest
     steps:
       - name: Clonar repositório
         uses: actions/checkout@v3
-      
+
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      
-      - name: Instalar ESLint
-        run: npm install -g eslint
-      
-      - name: Verificar JavaScript
-        run: eslint scripts.js || true
-      
-      - name: Verificar PHP
-        run: |
-          sudo apt-get install php-cli
-          php -l cadastro.php || true
-          php -l login.php || true
-  
-  deploy:
-    name: Deploy no GitHub Pages
-    needs: lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clonar repositório
-        uses: actions/checkout@v3
-      
-      - name: Configurar Git
-        run: |
-          git config --global user.email "seu-email@example.com"
-          git config --global user.name "SeuNome"
-      
-      - name: Criar branch gh-pages 
-        run: |
-          git fetch origin gh-pages || true
-          git checkout gh-pages || git checkout --orphan gh-pages
-          git reset --hard
-          git clean -fd
-          git commit --allow-empty -m "Inicializando GitHub Pages"
-          git push origin gh-pages || true
 
-      - name: Configurar GitHub Pages
-        uses: actions/configure-pages@v2
-      
-      - name: Fazer deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: .
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Rodar ESLint e Prettier
+        run: |
+          npm install --save-dev eslint prettier
+          npx eslint --fix scripts.js
+          npx prettier --write "**/*.{js,css,html}"
+
+      - name: Commit das alterações 
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Aplicando formatação automática" || echo "Nenhuma alteração necessária"
+          git push
