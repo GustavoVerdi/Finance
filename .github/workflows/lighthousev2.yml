@@ -1,8 +1,8 @@
-name: Análise de Performance
+name: Análise Lighthouse
 
 on:
   schedule:
-    - cron: '0 0 * * 1' # Roda toda segunda
+    - cron: '0 0 * * 1' # Roda toda segunda-feira
   push:
     branches:
       - main
@@ -23,7 +23,7 @@ jobs:
           lighthouse http://gustavoverdi.github.io/Finance/ --output=json --output-path=./report.json --quiet --chrome-flags="--headless"
 
       - name: Armazenar relatório como artefato
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2  # Atualizado para v2
         with:
           name: lighthouse-report
           path: ./report.json
