@@ -1,0 +1,33 @@
+name: Análise de Performance
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Roda toda segunda-feira
+  push:
+    branches:
+      - main
+
+jobs:
+  performance:
+    name: Rodar Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Instalar Lighthouse CLI
+        run: npm install -g lighthouse
+
+      - name: Rodar Lighthouse no site
+        run: |
+          lighthouse http://gustavoverdi.github.io/Finance/ --output=json --output-path=./report.json --quiet --chrome-flags="--headless"
+          
+      - name: Fazer upload de relatório no GitHub (via commit)
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add ./report.json
+          git commit -m "Adicionar relatório de performance do Lighthouse"
+          git push origin main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
