@@ -1,0 +1,30 @@
+name: Segurança e Dependências
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  
+  push:
+    branches:
+      - main
+
+jobs:
+  security:
+    name: Verificação de Segurança
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: Verificar pacotes NPM desatualizados
+        run: npm outdated || true
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Rodar auditoria de segurança NPM
+        run: npm audit --audit-level=moderate || true
+
+      - name: Rodar análise de segurança no código
+        uses: github/codeql-action/analyze@v2
+        with:
+          languages: javascript, python
