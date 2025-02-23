@@ -1,4 +1,4 @@
-name: Análise Lighthouse
+name: Análise de Performance
 
 on:
   schedule:
